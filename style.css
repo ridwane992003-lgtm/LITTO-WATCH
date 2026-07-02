@@ -1,12 +1,21 @@
+:root {
+  --primary: #1B4332;
+  --secondary: #0077B6;
+  --alert: #F77F00;
+  --warning: #FFD60A;
+  --background: #F1F3F5;
+  --text: #333;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
-  background-color: #f9fafb;
-  color: #333;
+  background-color: var(--background);
+  color: var(--text);
   margin: 0;
 }
 
 .header {
-  background: #1b4332;
+  background: var(--primary);
   color: #fff;
   padding: 1rem 2rem;
   display: flex;
@@ -19,27 +28,33 @@ body {
   margin: 0 1rem;
   text-decoration: none;
   font-weight: 500;
+  transition: border-bottom 0.3s;
 }
 .nav a:hover, .nav a.active {
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid #FFD60A;
 }
 
 .stat-card {
   background: #fff;
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  padding: 1.2rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
   text-align: center;
+  transition: transform 0.2s;
+}
+.stat-card:hover {
+  transform: translateY(-4px);
 }
 
 .btn-primary {
-  background: #2d6a4f;
+  background: var(--secondary);
   color: #fff;
   border: none;
-  padding: 0.6rem 1.2rem;
+  padding: 0.7rem 1.4rem;
   border-radius: 6px;
   cursor: pointer;
+  font-weight: 600;
 }
 .btn-primary:hover {
-  background: #1b4332;
+  background: #023E8A;
 }
