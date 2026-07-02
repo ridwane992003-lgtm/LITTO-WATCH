@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - LittoWatch</title>
+    <style>
+        :root {
+            --vert-mangrove: #2E7D32;
+            --bleu-ocean: #0277BD;
+            --blanc: #FFFFFF;
+            --gris-clair: #F5F7FA;
+            --texte: #1A1A1A;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--gris-clair) 0%, #E8F5E9 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auth-container {
+            background: var(--blanc);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .auth-logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .auth-logo h1 {
+            color: var(--vert-mangrove);
+            font-size: 2rem;
+        }
+
+        .auth-logo p {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--texte);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--bleu-ocean);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--vert-mangrove);
+            color: var(--blanc);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #66BB6A;
+        }
+
+        .auth-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #666;
+        }
+
+        .auth-link a {
+            color: var(--bleu-ocean);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .auth-link a:hover {
+            text-decoration: underline;
+        }
+
+        .message {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .message.error {
+            background: #fde8e8;
+            color: #c62828;
+            border: 1px solid #ef9a9a;
+            display: block;
+        }
+
+        .message.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-logo">
+            <h1>🌿 LittoWatch</h1>
+            <p>Créer votre compte</p>
+        </div>
+
+        <div id="message" class="message"></div>
+
+        <form id="inscription-form">
+            <div class="form-group">
+                <label for="nom">Nom complet</label>
+                <input type="text" id="nom" placeholder="Votre nom" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="votre@email.com" required>
+            </div>
+            <div class="form-group">
+                <label for="organisation">Organisation (optionnel)</label>
+                <input type="text" id="organisation" placeholder="Université, ONG, ...">
+            </div>
+            <div class="form-group">
+                <label for="mot_de_passe">Mot de passe</label>
+                <input type="password" id="mot_de_passe" placeholder="Minimum 6 caractères" minlength="6" required>
+            </div>
+            <button type="submit" class="btn">S'inscrire</button>
+        </form>
+
+        <p class="auth-link">
+            Déjà un compte ? <a href="connexion.html">Se connecter</a>
+        </p>
+    </div>
+
+    <script>
+        const API_URL = 'https://litto-watch-api.onrender.com';
+
+        document.getElementById('inscription-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const nom = document.getElementById('nom').value;
+            const email = document.getElementById('email').value;
+            const organisation = document.getElementById('organisation').value;
+            const mot_de_passe = document.getElementById('mot_de_passe').value;
+            const message = document.getElementById('message');
+
+            try {
+                const response = await fetch(`${API_URL}/auth/inscription`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nom, email, mot_de_passe, organisation })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('utilisateur', JSON.stringify(data));
+                    
+                    message.className = 'message success';
+                    message.textContent = 'Compte créé ! Redirection...';
+                    
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1000);
+                } else {
+                    message.className = 'message error';
+                    message.textContent = data.detail || 'Erreur lors de l\'inscription';
+                }
+            } catch (error) {
+                message.className = 'message error';
+                message.textContent = 'Impossible de contacter le serveur';
+            }
+        });
+    </script>
+</body>
+</html>
