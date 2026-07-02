@@ -1,3 +1,21 @@
+// Vérifier si l'utilisateur est connecté
+const token = localStorage.getItem('token');
+if (!token) {
+    window.location.href = 'connexion.html';
+}
+
+// Ajouter le token à toutes les requêtes
+const headers = {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+};
+
+// Fonction de déconnexion
+function deconnexion() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('utilisateur');
+    window.location.href = 'connexion.html';
+}
 const API_URL = 'https://litto-watch.onrender.com';
 
 document.addEventListener('DOMContentLoaded', () => {
