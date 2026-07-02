@@ -3,199 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LITTO-WATCH | Surveillance des mangroves</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="css/style.css">
+    <title>LittoWatch | Surveillance des Mangroves</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo-littowatch.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="header">
+    <!-- Header -->
+    <header>
         <div class="logo">
-            <h1>🌿 LITTO-WATCH</h1>
-            <span class="baseline">Littoral sous surveillance</span>
+            <!-- Ton logo intégré -->
+            <img src="logo-littowatch.png" alt="Logo LittoWatch" class="logo-img">
+            <h1>LittoWatch</h1>
         </div>
-        <nav class="nav">
-            <a href="#" class="active" data-page="dashboard">📊 Tableau de bord</a>
-            <a href="#" data-page="map">🗺️ Carte interactive</a>
-            <a href="#" data-page="field">📝 Saisie terrain</a>
-            <a href="#" data-page="alerts">⚠️ Alertes</a>
-            <a href="#" data-page="import">📥 Import/Export</a>
+        <nav>
+            <a href="#features">Fonctionnalités</a>
+            <a href="#data">Données</a>
+            <a href="#contact">Contact</a>
+            <a href="/dashboard" class="btn">Tableau de bord</a>
         </nav>
     </header>
 
-    <main class="main-content">
-        <!-- Dashboard -->
-        <section id="dashboard" class="page active">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h3>Observations</h3>
-                    <p id="nb-observations">--</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Température moyenne</h3>
-                    <p id="temp-moyenne">-- °C</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Salinité moyenne</h3>
-                    <p id="salinite-moyenne">-- ppt</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Alertes actives</h3>
-                    <p id="nb-alertes">--</p>
-                </div>
-            </div>
-            <div class="chart-container">
-                <canvas id="evolution-chart"></canvas>
-            </div>
-        </section>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-text">
+            <h2>Observer, comprendre, protéger les mangroves</h2>
+            <p>LittoWatch centralise les données de terrain, la télédétection NDVI et la cartographie interactive pour suivre l'état de santé des écosystèmes côtiers en temps réel.</p>
+            <a href="/dashboard" class="btn">Accéder à la plateforme</a>
+            <a href="#features" class="btn btn-outline">Découvrir les modules</a>
+        </div>
+        <div class="hero-img">
+            <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?q=80&w=1200" alt="Vue aérienne de mangrove">
+        </div>
+    </section>
 
-        <!-- Carte -->
-        <section id="map" class="page">
-            <div id="map-container"></div>
-        </section>
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="section-title">
+            <h3>Une plateforme complète</h3>
+            <p>Du GPS terrain aux images Sentinel-2, toutes vos données au même endroit</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card"><h4>🗺️ Cartographie Interactive</h4><p>Localisation GPS, couches PostGIS, visualisation superficie, type de mangrove et niveau de dégradation sur Leaflet.</p></div>
+            <div class="feature-card"><h4>🌡️ Suivi Physico-Chimique</h4><p>Saisie des campagnes : température, salinité, pH, oxygène dissous, nutriments. Historique et comparaison temporelle.</p></div>
+            <div class="feature-card"><h4>🛰️ Télédétection NDVI</h4><p>Import images satellites, calcul automatique des indices de végétation, détection perte ou expansion des surfaces.</p></div>
+            <div class="feature-card"><h4>⚠️ Alertes Intelligentes</h4><p>Notification automatique quand salinité, pH ou NDVI dépassent les seuils critiques définis pour chaque site.</p></div>
+        </div>
+    </section>
 
-        <!-- Saisie terrain -->
-        <section id="field" class="page">
-            <h2>Saisie d'une observation terrain</h2>
-            <form id="observation-form" class="observation-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Latitude</label>
-                        <input type="number" step="any" id="latitude" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Longitude</label>
-                        <input type="number" step="any" id="longitude" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Date</label>
-                        <input type="date" id="date" required>
-                    </div>
-                </div>
-                
-                <h3>Paramètres abiotiques</h3>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Température eau (°C)</label>
-                        <input type="number" step="0.1" id="temperature_eau">
-                    </div>
-                    <div class="form-group">
-                        <label>Salinité (ppt)</label>
-                        <input type="number" step="0.1" id="salinite">
-                    </div>
-                    <div class="form-group">
-                        <label>pH</label>
-                        <input type="number" step="0.01" id="ph">
-                    </div>
-                    <div class="form-group">
-                        <label>Oxygène dissous (mg/L)</label>
-                        <input type="number" step="0.1" id="oxygene_dissous">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Turbidité (NTU)</label>
-                        <input type="number" step="0.1" id="turbidite">
-                    </div>
-                    <div class="form-group">
-                        <label>Conductivité (mS/cm)</label>
-                        <input type="number" step="0.1" id="conductivite">
-                    </div>
-                    <div class="form-group">
-                        <label>Profondeur (m)</label>
-                        <input type="number" step="0.1" id="profondeur">
-                    </div>
-                </div>
+    <!-- CTA -->
+    <section class="cta" id="data">
+        <h3>Vous êtes chercheur, ONG ou gestionnaire d'aire protégée ?</h3>
+        <p>Rejoignez LittoWatch pour centraliser vos campagnes de terrain et analyser l'évolution des mangroves.</p>
+        <a href="/dashboard" class="btn">Commencer maintenant</a>
+    </section>
 
-                <h3>Nutriments</h3>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Nitrates (mg/L)</label>
-                        <input type="number" step="0.01" id="nitrates">
-                    </div>
-                    <div class="form-group">
-                        <label>Phosphates (mg/L)</label>
-                        <input type="number" step="0.01" id="phosphates">
-                    </div>
-                    <div class="form-group">
-                        <label>Matière organique (%)</label>
-                        <input type="number" step="0.1" id="matiere_organique">
-                    </div>
-                </div>
-
-                <h3>Habitat</h3>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Type de mangrove</label>
-                        <select id="type_mangrove">
-                            <option value="">Sélectionner</option>
-                            <option>Mangrove de bord de mer</option>
-                            <option>Mangrove arbustive</option>
-                            <option>Mangrove fluviale</option>
-                            <option>Mangrove de bassin</option>
-                            <option>Tanne</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Nature du sol</label>
-                        <select id="nature_sol">
-                            <option value="">Sélectionner</option>
-                            <option>Vaseux</option>
-                            <option>Sablo-vaseux</option>
-                            <option>Tourbeux</option>
-                            <option>Sableux</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Niveau de dégradation</label>
-                        <select id="niveau_degradation">
-                            <option value="">Sélectionner</option>
-                            <option>Faible</option>
-                            <option>Moyen</option>
-                            <option>Élevé</option>
-                            <option>Critique</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group full-width">
-                    <label>Espèces présentes</label>
-                    <textarea id="especes_presentes" rows="3" placeholder="Lister les espèces observées..."></textarea>
-                </div>
-                <div class="form-group full-width">
-                    <label>Notes</label>
-                    <textarea id="notes" rows="3" placeholder="Observations complémentaires..."></textarea>
-                </div>
-
-                <button type="submit" class="btn-primary">Enregistrer l'observation</button>
-            </form>
-        </section>
-
-        <!-- Alertes -->
-        <section id="alerts" class="page">
-            <h2>⚠️ Alertes - Dépassement de seuils</h2>
-            <div id="alerts-list"></div>
-        </section>
-
-        <!-- Import/Export -->
-        <section id="import" class="page">
-            <h2>📥 Import / Export de données</h2>
-            <div class="import-section">
-                <h3>Importer des données</h3>
-                <input type="file" id="csv-file" accept=".csv">
-                <button id="import-csv" class="btn-secondary">Importer CSV</button>
-                <input type="file" id="excel-file" accept=".xlsx,.xls">
-                <button id="import-excel" class="btn-secondary">Importer Excel</button>
-            </div>
-            <div class="export-section">
-                <h3>Exporter les données</h3>
-                <button id="export-csv" class="btn-primary">Exporter CSV</button>
-            </div>
-        </section>
-    </main>
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="js/map.js"></script>
-    <script src="js/dashboard.js"></script>
+    <!-- Footer -->
+    <footer id="contact">
+        <p>© 2026 LittoWatch. Projet open-source pour la conservation des mangroves.</p>
+        <p>Contact : <a href="mailto:ridwane992003@gmail.com">ridwane992003@gmail.com</a></p>
+    </footer>
 </body>
 </html>
