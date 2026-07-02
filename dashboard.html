@@ -10,7 +10,6 @@
             --vert-mangrove: #2E7D32;
             --bleu-ocean: #0277BD;
             --vert-clair: #66BB6A;
-            --ocre-tann: #C19A6B;
             --blanc: #FFFFFF;
             --gris-clair: #F5F7FA;
             --gris-fonce: #2c3e50;
@@ -30,7 +29,7 @@
             min-height: 100vh;
         }
 
-        /* ========== SIDEBAR ========== */
+        /* SIDEBAR */
         .sidebar {
             width: 260px;
             background: var(--gris-fonce);
@@ -81,11 +80,6 @@
             background: rgba(255,255,255,0.08);
             color: var(--blanc);
             border-left: 3px solid var(--vert-clair);
-        }
-
-        .sidebar-nav a i {
-            width: 20px;
-            text-align: center;
         }
 
         .sidebar-footer {
@@ -140,7 +134,7 @@
             color: #e74c3c;
         }
 
-        /* ========== MAIN ========== */
+        /* MAIN */
         .main {
             margin-left: 260px;
             flex: 1;
@@ -164,7 +158,7 @@
             font-size: 0.9rem;
         }
 
-        /* ========== STATS ========== */
+        /* STATS */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -193,7 +187,7 @@
             margin-top: 0.5rem;
         }
 
-        /* ========== PAGES ========== */
+        /* PAGES */
         .page {
             display: none;
         }
@@ -210,7 +204,7 @@
             color: var(--gris-fonce);
         }
 
-        /* ========== CARDS ========== */
+        /* CARDS */
         .card {
             background: var(--blanc);
             border-radius: 12px;
@@ -225,14 +219,14 @@
             font-size: 1.1rem;
         }
 
-        /* ========== MAP ========== */
+        /* MAP */
         .map-container {
             height: 500px;
             border-radius: 12px;
             overflow: hidden;
         }
 
-        /* ========== FORM ========== */
+        /* FORM */
         .form-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -277,6 +271,7 @@
             grid-column: 1 / -1;
         }
 
+        /* BOUTONS */
         .btn {
             padding: 12px 24px;
             border: none;
@@ -307,17 +302,7 @@
             color: var(--blanc);
         }
 
-        .btn-success {
-            background: var(--success);
-            color: var(--blanc);
-        }
-
-        .btn-sm {
-            padding: 8px 16px;
-            font-size: 0.85rem;
-        }
-
-        /* ========== ALERTS ========== */
+        /* ALERTES */
         .alert-item {
             padding: 1rem;
             border-radius: 8px;
@@ -344,7 +329,7 @@
             color: #666;
         }
 
-        /* ========== TABLE ========== */
+        /* TABLE */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -368,7 +353,7 @@
             background: #f9f9f9;
         }
 
-        /* ========== IMPORT/EXPORT ========== */
+        /* IMPORT */
         .import-zone {
             border: 2px dashed #ccc;
             border-radius: 12px;
@@ -383,12 +368,7 @@
             background: #f0f8ff;
         }
 
-        .import-zone p {
-            color: #666;
-            margin-top: 0.5rem;
-        }
-
-        /* ========== TOAST ========== */
+        /* TOAST */
         .toast {
             position: fixed;
             bottom: 20px;
@@ -397,7 +377,7 @@
             border-radius: 8px;
             color: var(--blanc);
             font-weight: 600;
-            z-index: 999;
+            z-index: 9999;
             animation: slideUp 0.3s ease;
         }
 
@@ -409,6 +389,7 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
+        /* RESPONSIVE */
         @media (max-width: 768px) {
             .sidebar { width: 200px; }
             .main { margin-left: 200px; padding: 1rem; }
@@ -418,6 +399,7 @@
     </style>
 </head>
 <body>
+
     <!-- ==================== SIDEBAR ==================== -->
     <aside class="sidebar">
         <div class="sidebar-header">
@@ -425,24 +407,12 @@
             <p>Tableau de bord</p>
         </div>
         <nav class="sidebar-nav">
-            <a class="active" data-page="dashboard">
-                📊 Tableau de bord
-            </a>
-            <a data-page="map">
-                🗺️ Carte interactive
-            </a>
-            <a data-page="field">
-                📝 Saisie terrain
-            </a>
-            <a data-page="observations">
-                📋 Observations
-            </a>
-            <a data-page="alerts">
-                ⚠️ Alertes
-            </a>
-            <a data-page="import">
-                📥 Import / Export
-            </a>
+            <a class="active" data-page="dashboard">📊 Tableau de bord</a>
+            <a data-page="map">🗺️ Carte interactive</a>
+            <a data-page="field">📝 Saisie terrain</a>
+            <a data-page="observations">📋 Observations</a>
+            <a data-page="alerts">⚠️ Alertes</a>
+            <a data-page="import">📥 Import / Export</a>
         </nav>
         <div class="sidebar-footer">
             <div class="user-info">
@@ -458,7 +428,8 @@
 
     <!-- ==================== MAIN ==================== -->
     <div class="main">
-        <!-- ========== DASHBOARD ========== -->
+
+        <!-- DASHBOARD -->
         <div class="page active" id="page-dashboard">
             <div class="top-bar">
                 <h1>Tableau de bord</h1>
@@ -488,13 +459,8 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Coordonnées</th>
-                                <th>Type mangrove</th>
-                                <th>Dégradation</th>
-                                <th>Temp.</th>
-                                <th>pH</th>
-                                <th>Salinité</th>
+                                <th>Date</th><th>Coordonnées</th><th>Type</th>
+                                <th>Dégradation</th><th>Temp.</th><th>pH</th><th>Salinité</th>
                             </tr>
                         </thead>
                         <tbody id="recent-obs">
@@ -505,21 +471,15 @@
             </div>
         </div>
 
-        <!-- ========== MAP ========== -->
+        <!-- MAP -->
         <div class="page" id="page-map">
-            <div class="page-header">
-                <h2>Carte interactive</h2>
-            </div>
-            <div class="card">
-                <div id="map" class="map-container"></div>
-            </div>
+            <div class="page-header"><h2>Carte interactive</h2></div>
+            <div class="card"><div id="map" class="map-container"></div></div>
         </div>
 
-        <!-- ========== FIELD ========== -->
+        <!-- FIELD -->
         <div class="page" id="page-field">
-            <div class="page-header">
-                <h2>Saisie terrain</h2>
-            </div>
+            <div class="page-header"><h2>Saisie terrain</h2></div>
             <div class="card">
                 <h3>Nouvelle observation</h3>
                 <form id="obs-form">
@@ -540,35 +500,28 @@
                             <label>Type mangrove</label>
                             <select id="type_mangrove">
                                 <option value="">-- Sélectionner --</option>
-                                <option>Bord de mer</option>
-                                <option>Arbustive</option>
-                                <option>Fluviale</option>
-                                <option>Bassin</option>
-                                <option>Tanne</option>
+                                <option>Bord de mer</option><option>Arbustive</option>
+                                <option>Fluviale</option><option>Bassin</option><option>Tanne</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Nature du sol</label>
                             <select id="nature_sol">
                                 <option value="">-- Sélectionner --</option>
-                                <option>Vaseux</option>
-                                <option>Sablo-vaseux</option>
-                                <option>Tourbeux</option>
-                                <option>Sableux</option>
+                                <option>Vaseux</option><option>Sablo-vaseux</option>
+                                <option>Tourbeux</option><option>Sableux</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Niveau dégradation</label>
+                            <label>Dégradation</label>
                             <select id="niveau_degradation">
                                 <option value="">-- Sélectionner --</option>
-                                <option>Faible</option>
-                                <option>Moyen</option>
-                                <option>Élevé</option>
-                                <option>Critique</option>
+                                <option>Faible</option><option>Moyen</option>
+                                <option>Élevé</option><option>Critique</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Température eau (°C)</label>
+                            <label>Temp. eau (°C)</label>
                             <input type="number" step="0.1" id="temperature_eau" placeholder="25.5">
                         </div>
                         <div class="form-group">
@@ -616,30 +569,21 @@
                             <textarea id="notes" placeholder="Observations complémentaires..."></textarea>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">💾 Enregistrer</button>
+                    <button type="submit" class="btn btn-primary" style="margin-top:1rem;">💾 Enregistrer</button>
                 </form>
             </div>
         </div>
 
-        <!-- ========== OBSERVATIONS ========== -->
+        <!-- OBSERVATIONS -->
         <div class="page" id="page-observations">
-            <div class="page-header">
-                <h2>Toutes les observations</h2>
-            </div>
+            <div class="page-header"><h2>Toutes les observations</h2></div>
             <div class="card">
-                <div style="overflow-x: auto;">
+                <div style="overflow-x:auto;">
                     <table>
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Date</th>
-                                <th>Latitude</th>
-                                <th>Longitude</th>
-                                <th>Type</th>
-                                <th>Dégradation</th>
-                                <th>Temp.</th>
-                                <th>pH</th>
-                                <th>Salinité</th>
+                                <th>ID</th><th>Date</th><th>Lat</th><th>Lon</th>
+                                <th>Type</th><th>Dégrad.</th><th>Temp</th><th>pH</th><th>Salinité</th>
                             </tr>
                         </thead>
                         <tbody id="all-obs">
@@ -650,29 +594,22 @@
             </div>
         </div>
 
-        <!-- ========== ALERTS ========== -->
+        <!-- ALERTS -->
         <div class="page" id="page-alerts">
-            <div class="page-header">
-                <h2>Centre d'alertes</h2>
-            </div>
-            <div id="alerts-container">
-                <p style="color:#666;">Aucune alerte active.</p>
-            </div>
+            <div class="page-header"><h2>Centre d'alertes</h2></div>
+            <div id="alerts-container"><p style="color:#666;">Chargement...</p></div>
         </div>
 
-        <!-- ========== IMPORT/EXPORT ========== -->
+        <!-- IMPORT/EXPORT -->
         <div class="page" id="page-import">
-            <div class="page-header">
-                <h2>Import / Export</h2>
-            </div>
+            <div class="page-header"><h2>Import / Export</h2></div>
             <div class="card">
                 <h3>📥 Importer des données</h3>
                 <div class="import-zone" onclick="document.getElementById('file-csv').click()">
                     <p style="font-size:2rem;">📁</p>
                     <p><strong>Cliquez pour sélectionner un fichier CSV</strong></p>
-                    <p style="font-size:0.85rem;">Format accepté : .csv</p>
                 </div>
-                <input type="file" id="file-csv" accept=".csv" style="display:none;" onchange="importerCSV(event)">
+                <input type="file" id="file-csv" accept=".csv" style="display:none;">
                 <p id="import-status" style="margin-top:0.5rem;color:#666;"></p>
             </div>
             <div class="card">
@@ -680,23 +617,27 @@
                 <button class="btn btn-outline" onclick="exporterCSV()">📥 Télécharger CSV</button>
             </div>
         </div>
+
     </div>
 
     <!-- ==================== SCRIPTS ==================== -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // ==================== CONFIG ====================
+        // ========== CONFIG ==========
         const API_URL = 'https://litto-watch-api.onrender.com';
-        let map = null;
-        let markers = [];
 
-        // ==================== AUTH ====================
+        // ========== AUTH ==========
         const token = localStorage.getItem('token');
         const utilisateur = JSON.parse(localStorage.getItem('utilisateur') || '{}');
 
         if (!token) {
             window.location.href = 'connexion.html';
         }
+
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        };
 
         // Afficher infos utilisateur
         document.getElementById('user-avatar').textContent = (utilisateur.nom || '?')[0].toUpperCase();
@@ -709,36 +650,7 @@
             window.location.href = 'connexion.html';
         }
 
-        // Headers pour toutes les requêtes
-        const headers = {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        };
-
-        // ==================== NAVIGATION ====================
-        document.querySelectorAll('.sidebar-nav a').forEach(link => {
-            link.addEventListener('click', function() {
-                // Activer le lien
-                document.querySelectorAll('.sidebar-nav a').forEach(l => l.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Afficher la page
-                const page = this.dataset.page;
-                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-                document.getElementById('page-' + page).classList.add('active');
-                
-                // Initialiser la carte si nécessaire
-                if (page === 'map' && !map) {
-                    setTimeout(initMap, 200);
-                }
-                
-                // Charger les données
-                if (page === 'alerts') chargerAlertes();
-                if (page === 'observations') chargerObservations();
-            });
-        });
-
-        // ==================== TOAST ====================
+        // ========== TOAST ==========
         function showToast(message, type = 'success') {
             const toast = document.createElement('div');
             toast.className = 'toast toast-' + type;
@@ -747,39 +659,50 @@
             setTimeout(() => toast.remove(), 3000);
         }
 
-        // ==================== DATE ====================
-        const now = new Date();
-        document.getElementById('current-date').textContent = now.toLocaleDateString('fr-FR', {
+        // ========== DATE ==========
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('fr-FR', {
             weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
         });
 
-        // ==================== DASHBOARD ====================
+        // ========== NAVIGATION ==========
+        document.querySelectorAll('.sidebar-nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('.sidebar-nav a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+
+                const page = this.dataset.page;
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById('page-' + page).classList.add('active');
+
+                if (page === 'map') setTimeout(initMap, 200);
+                if (page === 'alerts') chargerAlertes();
+                if (page === 'observations') chargerObservations();
+            });
+        });
+
+        // ========== DASHBOARD ==========
         async function chargerDashboard() {
             try {
-                const [statsRes, obsRes] = await Promise.all([
+                const [statsRes, obsRes, alertesRes] = await Promise.all([
                     fetch(API_URL + '/stats', { headers }),
-                    fetch(API_URL + '/observations', { headers })
+                    fetch(API_URL + '/observations', { headers }),
+                    fetch(API_URL + '/alertes', { headers })
                 ]);
-                
+
                 const stats = await statsRes.json();
                 const observations = await obsRes.json();
+                const alertes = await alertesRes.json();
 
                 document.getElementById('stat-obs').textContent = stats.nombre_observations || 0;
                 document.getElementById('stat-temp').textContent = stats.temperature_moyenne ? stats.temperature_moyenne.toFixed(1) + ' °C' : '--';
                 document.getElementById('stat-sal').textContent = stats.salinite_moyenne ? stats.salinite_moyenne.toFixed(1) + ' ppt' : '--';
-                
-                // Alertes
-                const alertesRes = await fetch(API_URL + '/alertes', { headers });
-                const alertes = await alertesRes.json();
                 document.getElementById('stat-alert').textContent = Array.isArray(alertes) ? alertes.length : 0;
 
-                // Tableau récent
                 const tbody = document.getElementById('recent-obs');
                 if (Array.isArray(observations) && observations.length > 0) {
-                    const recent = observations.slice(-10).reverse();
-                    tbody.innerHTML = recent.map(obs => `
+                    tbody.innerHTML = observations.slice(-10).reverse().map(obs => `
                         <tr>
-                            <td>${obs.date}</td>
+                            <td>${obs.date || '--'}</td>
                             <td>${obs.latitude}, ${obs.longitude}</td>
                             <td>${obs.type_mangrove || '--'}</td>
                             <td>${obs.niveau_degradation || '--'}</td>
@@ -793,17 +716,20 @@
                 }
             } catch (error) {
                 console.error('Erreur dashboard:', error);
+                showToast('Erreur de connexion au serveur', 'error');
             }
         }
 
-        // ==================== CARTE ====================
+        // ========== CARTE ==========
+        let map = null;
+        let markers = [];
+
         function initMap() {
+            if (map) return;
             map = L.map('map').setView([14.5, -17.0], 10);
-            
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap | LittoWatch'
             }).addTo(map);
-
             chargerMarqueurs();
         }
 
@@ -811,29 +737,15 @@
             try {
                 const response = await fetch(API_URL + '/observations', { headers });
                 const data = await response.json();
-
                 markers.forEach(m => map.removeLayer(m));
                 markers = [];
-
                 data.forEach(obs => {
                     const couleur = obs.niveau_degradation === 'Critique' ? '#e63946' :
                                     obs.niveau_degradation === 'Élevé' ? '#f4a261' : '#2d6a4f';
-                    
                     const marker = L.circleMarker([obs.latitude, obs.longitude], {
-                        radius: 8,
-                        fillColor: couleur,
-                        color: '#fff',
-                        weight: 2,
-                        fillOpacity: 0.8
+                        radius: 8, fillColor: couleur, color: '#fff', weight: 2, fillOpacity: 0.8
                     }).addTo(map);
-                    
-                    marker.bindPopup(`
-                        <b>${obs.type_mangrove || 'Mangrove'}</b><br>
-                        Date : ${obs.date}<br>
-                        Dégradation : ${obs.niveau_degradation || '--'}<br>
-                        Temp : ${obs.temperature_eau || '--'}°C | pH : ${obs.ph || '--'}
-                    `);
-                    
+                    marker.bindPopup(`<b>${obs.type_mangrove || 'Mangrove'}</b><br>Date: ${obs.date}<br>Dégradation: ${obs.niveau_degradation || '--'}<br>Temp: ${obs.temperature_eau || '--'}°C | pH: ${obs.ph || '--'}`);
                     markers.push(marker);
                 });
             } catch (error) {
@@ -841,10 +753,9 @@
             }
         }
 
-        // ==================== SAISIE TERRAIN ====================
+        // ========== FORMULAIRE ==========
         document.getElementById('obs-form').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
             const data = {
                 latitude: parseFloat(document.getElementById('latitude').value),
                 longitude: parseFloat(document.getElementById('longitude').value),
@@ -865,14 +776,10 @@
                 especes_presentes: document.getElementById('especes_presentes').value || null,
                 notes: document.getElementById('notes').value || null
             };
-
             try {
                 const response = await fetch(API_URL + '/observations', {
-                    method: 'POST',
-                    headers,
-                    body: JSON.stringify(data)
+                    method: 'POST', headers, body: JSON.stringify(data)
                 });
-
                 if (response.ok) {
                     showToast('✅ Observation enregistrée !', 'success');
                     this.reset();
@@ -886,77 +793,68 @@
             }
         });
 
-        // ==================== OBSERVATIONS ====================
+        // ========== OBSERVATIONS ==========
         async function chargerObservations() {
+            const tbody = document.getElementById('all-obs');
+            tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;">Chargement...</td></tr>';
             try {
                 const response = await fetch(API_URL + '/observations', { headers });
                 const data = await response.json();
-                
-                const tbody = document.getElementById('all-obs');
                 if (Array.isArray(data) && data.length > 0) {
                     tbody.innerHTML = data.reverse().map(obs => `
                         <tr>
-                            <td>${obs.id}</td>
-                            <td>${obs.date}</td>
-                            <td>${obs.latitude}</td>
-                            <td>${obs.longitude}</td>
-                            <td>${obs.type_mangrove || '--'}</td>
-                            <td>${obs.niveau_degradation || '--'}</td>
-                            <td>${obs.temperature_eau || '--'}</td>
-                            <td>${obs.ph || '--'}</td>
-                            <td>${obs.salinite || '--'}</td>
+                            <td>${obs.id}</td><td>${obs.date}</td><td>${obs.latitude}</td><td>${obs.longitude}</td>
+                            <td>${obs.type_mangrove || '--'}</td><td>${obs.niveau_degradation || '--'}</td>
+                            <td>${obs.temperature_eau || '--'}</td><td>${obs.ph || '--'}</td><td>${obs.salinite || '--'}</td>
                         </tr>
                     `).join('');
                 } else {
                     tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;">Aucune observation</td></tr>';
                 }
             } catch (error) {
-                console.error('Erreur observations:', error);
+                tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;">Erreur de chargement</td></tr>';
             }
         }
 
-        // ==================== ALERTES ====================
+        // ========== ALERTES ==========
         async function chargerAlertes() {
+            const container = document.getElementById('alerts-container');
+            container.innerHTML = '<p style="color:#666;">Chargement...</p>';
             try {
                 const response = await fetch(API_URL + '/alertes', { headers });
                 const data = await response.json();
-                
-                const container = document.getElementById('alerts-container');
                 if (Array.isArray(data) && data.length > 0) {
                     container.innerHTML = data.map(a => `
                         <div class="alert-item ${a.valeur > (a.seuil_max || 100) ? 'danger' : 'warning'}">
-                            <span class="alert-param">${a.parametre}</span> = ${a.valeur} 
-                            (seuil: ${a.seuil_min} - ${a.seuil_max})<br>
-                            <span class="alert-date">${a.date} - ${a.message}</span>
+                            <span class="alert-param">${a.parametre}</span> = <strong>${a.valeur}</strong>
+                            (seuil: ${a.seuil_min || '--'} - ${a.seuil_max || '--'})<br>
+                            <span class="alert-date">${a.date || '--'} - ${a.message || ''}</span>
                         </div>
                     `).join('');
                 } else {
                     container.innerHTML = '<p style="color:#666;">✅ Aucune alerte active.</p>';
                 }
             } catch (error) {
-                console.error('Erreur alertes:', error);
+                container.innerHTML = '<p style="color:red;">Erreur de chargement.</p>';
             }
         }
 
-        // ==================== IMPORT/EXPORT ====================
-        async function importerCSV(event) {
-            const file = event.target.files[0];
+        // ========== IMPORT CSV ==========
+        document.getElementById('file-csv').addEventListener('change', async function(e) {
+            const file = e.target.files[0];
             if (!file) return;
-
+            document.getElementById('import-status').textContent = 'Import en cours...';
             const formData = new FormData();
             formData.append('file', file);
-
             try {
                 const response = await fetch(API_URL + '/upload/csv', {
                     method: 'POST',
                     headers: { 'Authorization': `Bearer ${token}` },
                     body: formData
                 });
-
                 if (response.ok) {
                     const data = await response.json();
-                    document.getElementById('import-status').textContent = 
-                        '✅ ' + data.lignes_importées + ' lignes importées';
+                    document.getElementById('import-status').textContent = '✅ ' + data.lignes_importées + ' lignes importées';
                     showToast('✅ Import réussi !', 'success');
                     chargerDashboard();
                 } else {
@@ -965,26 +863,29 @@
             } catch (error) {
                 document.getElementById('import-status').textContent = '❌ Erreur de connexion';
             }
-        }
+        });
 
+        // ========== EXPORT CSV ==========
         async function exporterCSV() {
             try {
                 const response = await fetch(API_URL + '/export/csv', { headers });
                 const data = await response.json();
-                
-                const blob = new Blob([data.data], { type: 'text/csv' });
+                const blob = new Blob([data.data], { type: 'text/csv;charset=utf-8;' });
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
                 a.download = 'littowatch-export-' + new Date().toISOString().split('T')[0] + '.csv';
+                document.body.appendChild(a);
                 a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
                 showToast('✅ Export réussi !', 'success');
             } catch (error) {
-                showToast('❌ Erreur lors de l\'export', 'error');
+                showToast('❌ Erreur export', 'error');
             }
         }
 
-        // ==================== INIT ====================
+        // ========== INIT ==========
         chargerDashboard();
     </script>
 </body>
